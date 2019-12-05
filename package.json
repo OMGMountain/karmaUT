@@ -25,7 +25,6 @@
         "mocha": "^6.2.2"
     },
     "scripts": {
-        "karma": "karma start",
         "test": "./node_modules/.bin/karma start",
         "f2etest": "./node_modules/.bin/karma start --single-run --browsers f2etest-chrome,f2etest-firefox"
     },
