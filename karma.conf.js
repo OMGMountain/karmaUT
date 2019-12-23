@@ -18,7 +18,7 @@ function createWebdriver (extraConfig) {
         'name': 'Karma',
         'base': 'WebDriver',
         'config': {
-            'host': '192.168.220.146',
+            'host': '192.168.220.179',
             'port': 4001
         },
         'f2etest.userid': 'User1574760266225',
@@ -85,6 +85,8 @@ module.exports = function (config) {
         customLaunchers: {
             'f2etest-chrome': createWebdriver({ browserName: 'chrome' }),
             'f2etest-firefox': createWebdriver({ browserName: 'firefox' }),
+            'f2etest-sogou': createWebdriver({ browserName: 'sogou' }),
+            'f2etest-ucbrowser': createWebdriver({ browserName: 'ucbrowser' }),
             'f2etest-ie8': createWebdriver({ browserName: 'internet explorer', version: '8' }),
             'f2etest-ie9': createWebdriver({ browserName: 'internet explorer', version: '9' }),
             'f2etest-ie10': createWebdriver({ browserName: 'internet explorer', version: '10' }),
@@ -94,6 +96,8 @@ module.exports = function (config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['Chrome', 'Safari', 'Firefox'],
+        // browsers: ['Chrome'],
+
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

@@ -26,7 +26,7 @@
     },
     "scripts": {
         "test": "./node_modules/.bin/karma start",
-        "f2etest": "./node_modules/.bin/karma start --single-run --browsers f2etest-chrome,f2etest-firefox"
+        "f2etest": "./node_modules/.bin/karma start --single-run --browsers f2etest-chrome,f2etest-ie11"
     },
     "author": "OMGmountain@163.com",
     "license": "MIT"

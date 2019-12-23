@@ -1,61 +1,73 @@
+// describe('测试用例', function () {
+//     it('1等于1', function () {
+//         expect(1).to.equal(1);
+//         console.log('logtest');
+//     });
+// });
+
+
 // 两种引入方式都可以
 import * as An from "../sdk/AnalysysAgent_JS_SDK.min.js"
-// var An = require('../sdk/AnalysysAgent_JS_SDK.min.js');
+// // var An = require('../sdk/AnalysysAgent_JS_SDK.min.js');
 
-function checkURL (URL) {
-    var str = URL;
-    //判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
-    //下面的代码中应用了转义字符"\"输出一个字符"/"
-    var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-    var objExp = new RegExp(Expression);
-    if (objExp.test(str) == true) {
-        return true;
-    } else {
-        return false;
-    }
-}
+// // 尝试引入 微信SDK 测试API   wx is not defined 报错，执行不下去，单测API 也不行。
+// // import * as An from "../sdk/AnalysysAgent_WX_SDK.min3.js" 
+// // console.log(An)
 
-function getQueryString (name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return null;
-}
-var appkey = getQueryString("appkey");
-if (!appkey) {
-    appkey = "ca715e78ae929a48" //"af0a9bbfdbebafce"
-}
-var uploadURL = getQueryString("uploadURL");
-if (!uploadURL || !checkURL(uploadURL)) {
-    uploadURL = 'https://arksdktest.analysys.cn:4069'//'http://192.168.220.167:8089'// 'https://arkpaastest.analysys.cn:4089'
-}
+// function checkURL (URL) {
+//     var str = URL;
+//     //判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+//     //下面的代码中应用了转义字符"\"输出一个字符"/"
+//     var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+//     var objExp = new RegExp(Expression);
+//     if (objExp.test(str) == true) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
 
-(function (config) {
-    window.AnalysysAgent = window.AnalysysAgent || []
-    window.AnalysysAgent.methods = 'identify alias reset track profileSet profileSetOnce profileIncrement profileAppend profileUnset profileDelete registerSuperProperty registerSuperProperties unRegisterSuperProperty clearSuperProperties getSuperProperty getSuperProperties pageView debugMode auto appkey name uploadURL hash visitorConfigURL autoProfile autoWebstay encryptType pageProperty duplicatePost NPSConfigURL getDistinctId sendType'.split(' ');
-    function factory (b) {
-        return function () {
-            var a = Array.prototype.slice.call(arguments);
-            a.unshift(b);
-            window.AnalysysAgent.push(a);
-            return window.AnalysysAgent;
-        }
-    };
-    for (var i = 0; i < AnalysysAgent.methods.length; i++) {
-        var key = window.AnalysysAgent.methods[i];
-        AnalysysAgent[key] = factory(key);
-    }
-    for (var key in config) {
-        if (!AnalysysAgent[key]) {
-            AnalysysAgent[key] = factory(key);
-        }
-        AnalysysAgent[key](config[key])
-    }
-})({
-    appkey: appkey, //APPKEY
-    debugMode: 2,
-    sendType: 'post'
-})
+// function getQueryString (name) {
+//     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+//     var r = window.location.search.substr(1).match(reg);
+//     if (r != null) return unescape(r[2]);
+//     return null;
+// }
+// var appkey = getQueryString("appkey");
+// if (!appkey) {
+//     appkey = "ca715e78ae929a48" //"af0a9bbfdbebafce"
+// }
+// var uploadURL = getQueryString("uploadURL");
+// if (!uploadURL || !checkURL(uploadURL)) {
+//     uploadURL = 'https://arksdktest.analysys.cn:4069'//'http://192.168.220.167:8089'// 'https://arkpaastest.analysys.cn:4089'
+// }
+
+// (function (config) {
+//     window.AnalysysAgent = window.AnalysysAgent || []
+//     window.AnalysysAgent.methods = 'identify alias reset track profileSet profileSetOnce profileIncrement profileAppend profileUnset profileDelete registerSuperProperty registerSuperProperties unRegisterSuperProperty clearSuperProperties getSuperProperty getSuperProperties pageView debugMode auto appkey name uploadURL hash visitorConfigURL autoProfile autoWebstay encryptType pageProperty duplicatePost NPSConfigURL getDistinctId sendType'.split(' ');
+//     function factory (b) {
+//         return function () {
+//             var a = Array.prototype.slice.call(arguments);
+//             a.unshift(b);
+//             window.AnalysysAgent.push(a);
+//             return window.AnalysysAgent;
+//         }
+//     };
+//     for (var i = 0; i < AnalysysAgent.methods.length; i++) {
+//         var key = window.AnalysysAgent.methods[i];
+//         AnalysysAgent[key] = factory(key);
+//     }
+//     for (var key in config) {
+//         if (!AnalysysAgent[key]) {
+//             AnalysysAgent[key] = factory(key);
+//         }
+//         AnalysysAgent[key](config[key])
+//     }
+// })({
+//     appkey: appkey, //APPKEY
+//     debugMode: 2,
+//     sendType: 'post'
+// })
 
 describe('JS SDK', function () {
     it('注册超级属性 (a,1)', function () {
